@@ -5,6 +5,6 @@ local Ch_4 = require "Ch_4"
 local Ch_5 = require "Ch_5"
 
 local function main()
-  print(Ch_5.p5_1("1", "2", "5", 35, 'hello'))
+  Ch_4.p4_4()
 end
 main()

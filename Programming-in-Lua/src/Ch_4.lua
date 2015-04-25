@@ -1,3 +1,52 @@
 local M = {}
 
+-- p4.4 - Rewrite the state machine of Listing 4.2 without using goto.
+---[[
+function M.p4_4()
+  room1 = {}
+  room2 = {}
+  room3 = {}
+  room4 = {}
+  
+  -- These initializations have to be outside the table constructor because they reference each other
+  -- The dungeon is set up like this:
+  -- -----------------
+  -- |       |       |
+  -- | room1 | room2 |
+  -- |       |       |
+  -- -----------------
+  -- |       |       |
+  -- | room3 | room4 |
+  -- |       |       |
+  -- ----------------- 
+  room1.south = room3
+  room1.east = room2
+  room1.message = "Welcome to Room 1"
+  room2.south = room4
+  room2.west = room1
+  room2.message = "Welcome to Room 2"
+  room3.north = room1
+  room3.east = room4
+  room3.message = "Welcome to Room 3"
+  room4.victoryFlag = true
+  room4.message = "Congratulations, you win!"
+  
+  victoryFlag = nil
+  currentRoom = room1
+  errorMessage = "That is not a valid move from this room.\nPlease try again\n"
+  while not victoryFlag do
+    print(currentRoom.message)
+    next = currentRoom[io.read()] --note that table["stringVal"] returns table.stringVal
+    if next then 
+      currentRoom = next
+      victoryFlag = currentRoom.victoryFlag
+    else 
+      print(errorMessage) 
+    end
+  end
+  print(currentRoom.message)  
+  
+end
+---]]
+-- end p4_4
 return M
