@@ -9,6 +9,7 @@ function M.p4_4()
   room4 = {}
   
   -- These initializations have to be outside the table constructor because they reference each other
+  -- Alternatively, there could be a table of rooms where each room is constructed in the dungeon's constructor
   -- The dungeon is set up like this:
   -- -----------------
   -- |       |       |
@@ -34,14 +35,14 @@ function M.p4_4()
   victoryFlag = nil
   currentRoom = room1
   errorMessage = "That is not a valid move from this room.\nPlease try again\n"
-  while not victoryFlag do
+  while not victoryFlag do -- note that not nil evaluates to true
     print(currentRoom.message)
-    next = currentRoom[io.read()] --note that table["stringVal"] returns table.stringVal
+    next = currentRoom[io.read()] -- note that table["stringVal"] returns table.stringVal.
     if next then 
       currentRoom = next
-      victoryFlag = currentRoom.victoryFlag
+      victoryFlag = currentRoom.victoryFlag -- will return nil for all rooms except room4
     else 
-      print(errorMessage) 
+      print(errorMessage)
     end
   end
   print(currentRoom.message)  
