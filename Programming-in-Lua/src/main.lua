@@ -5,6 +5,9 @@ local Ch_4 = require "Ch_4"
 local Ch_5 = require "Ch_5"
 
 local function main()
-  Ch_4.p4_4()
+  five = {5}
+  arr = {'one', 'two', 3, '4', five}
+  print(Ch_5.p5_3(table.unpack(arr)))
+  
 end
 main()

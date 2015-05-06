@@ -37,7 +37,16 @@ function M.p4_4()
   errorMessage = "That is not a valid move from this room.\nPlease try again\n"
   while not victoryFlag do -- note that not nil evaluates to true
     print(currentRoom.message)
-    next = currentRoom[io.read()] -- note that table["stringVal"] returns table.stringVal.
+    next = currentRoom[io.read()] -- note that table["stringVal"] returns table.stringVal
+    -- This has huge code injection vulnerabilities, don't use it in real code
+    -- Alternatives include: write a separate parser that handles all valid inputs
+    --                       add a section of code here that purges unacceptable inputs (bad 
+    --                         practice, easily bugged)
+    --                       rewrite the rooms so that only acceptable inputs can be reached 
+    --                         without using a getThis() function, and have the next line be 
+    --                         "if next and type(x)=='table' then".  Even better would be to
+    --                         change the __type variable in each room table or create a 
+    --                         generic room object.
     if next then 
       currentRoom = next
       victoryFlag = currentRoom.victoryFlag -- will return nil for all rooms except room4
@@ -50,4 +59,7 @@ function M.p4_4()
 end
 ---]]
 -- end p4_4
-return M
+
+local public = { p4_4 = M.p4_4 }
+
+return public

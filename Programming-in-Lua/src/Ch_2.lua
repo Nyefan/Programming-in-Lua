@@ -20,4 +20,6 @@ end
 ---]]
 -- end p2_4
 
-return M
+local public = { p2_4 = M.p2_4 }
+
+return public

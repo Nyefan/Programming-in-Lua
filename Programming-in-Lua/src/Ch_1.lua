@@ -23,4 +23,7 @@ end
 ---]]
 -- end p1_5
 
-return M
+local public = { p1_1 = M.p1_1,
+                 p1_5 = M.p1_5 }
+
+return public
