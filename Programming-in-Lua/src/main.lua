@@ -3,11 +3,22 @@ local Ch_2 = require "Ch_2"
 local Ch_3 = require "Ch_3"
 local Ch_4 = require "Ch_4"
 local Ch_5 = require "Ch_5"
+local Ch_6 = require "Ch_6"
 
 local function main()
-  five = {5}
-  arr = {'one', 'two', 3, '4', five}
-  print(Ch_5.p5_3(table.unpack(arr)))
+  s = function(x) return math.sin(x) end
+  c0 = Ch_6.p6_1(s)
+  c = function(a,b) return -1*c0(a,b)+1 end
+  
+  print(c(0, -6.28))
+  print(c(0, -4.71))
+  print(c(0, -3.14))
+  print(c(0, -1.57))
+  print(c(0, 0))
+  print(c(0, 1.57))
+  print(c(0, 3.14))
+  print(c(0, 4.71))
+  print(c(0, 6.28))
   
 end
 main()

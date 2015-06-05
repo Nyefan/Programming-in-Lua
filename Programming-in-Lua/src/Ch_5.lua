@@ -43,9 +43,28 @@ end
 --        is zero, there is only one combination, which uses no elements.)
 ---[[
 function M.p5_4(arr)
-
+  printTable = M.C(#arr, table.unpack(arr))
+  for item in printTable do
+    print(item)
+  end
 end
---]]
+---]]
+
+-- C(arr, n) - Return a table containing all combinations of elements from arr using n
+--             elements.  Each combinations is stored as an array.
+---[[
+function M.C(m, ...)
+  if m > #{...} then return nil end
+  if m == 0 then return {{}} end
+  firstHalf = M.C(m-1, table.unpack({...}, 2))
+  secondHalf = firstHalf
+  for item in firstHalf do
+    item = { table.unpack({...},1,2), table.unpack(item)}
+  end
+  returnTable = {table.unpack(firstHalf), table.unpack(secondHalf)}
+  return returnTable 
+end
+---]]
 
 local public = { p5_1 = M.p5_1,
                  p5_2 = M.p5_2,
